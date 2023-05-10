@@ -9,7 +9,10 @@ import android.widget.DatePicker;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     DatePicker dp;
@@ -32,13 +35,21 @@ public class MainActivity extends AppCompatActivity {
         btnDisplayTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Calendar cal = Calendar.getInstance();
-                int hour = cal.get(Calendar.HOUR_OF_DAY);
-                int minute = cal.get(Calendar.MINUTE);
+                int hour = tp.getHour();
+                int min = tp.getMinute();
+                tvDisplay.setText("Time is " + hour + ":" + min);
+            }
+        });
 
-                String time = String.format("%d:%.02d", hour, minute);
+        btnDisplayDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               int DOM = dp.getDayOfMonth();
+               int month = dp.getMonth();
+               int year = dp.getYear();
 
-                tvDisplay.setText(time);
+               tvDisplay.setText("Date is " + DOM + "/" + month + "/" + year);
+
             }
         });
     }
